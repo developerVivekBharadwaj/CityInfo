@@ -49,10 +49,13 @@ namespace CityInfo.API.Controllers
         /// Get a city by id
         /// </summary>
         /// <param name="id">The id of the city to get</param>
-        /// <param name="includePointsOfInterest">Whether or not to include the points of interest</param>
+        /// <param name="includePointOfInterest">Whether or not to include the points of interest</param>
         /// <response code="200">Returns the requested city</response>
         /// <returns>A city with or without points of interest</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCities(int id,
             bool includePointOfInterest = false)
         {
